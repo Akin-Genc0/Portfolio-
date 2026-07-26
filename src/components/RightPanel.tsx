@@ -104,6 +104,11 @@ export function RightPanel({
           </span>
           <small>London, United Kingdom</small>
         </section>
+        <section className="rail-card fun-fact-card">
+          <p className="eyebrow">Fun fact</p>
+          <p>The most goated note-taking app is Obsidian.</p>
+          <small>Local markdown files, backlinks, and no lock-in.</small>
+        </section>
       </div>
     </details>
   );
