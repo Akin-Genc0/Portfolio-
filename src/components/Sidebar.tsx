@@ -27,8 +27,7 @@ export function Sidebar({ profile }: { profile: GithubProfile | null }) {
         </div>
       </div>
       <p className="m-0 px-2.5 pt-4 pb-[18px] text-xs text-[var(--highlight)] lg:pt-6">
-        <span className="mr-[7px] inline-block h-[7px] w-[7px] rounded-full bg-[var(--highlight)]" />
-        Terraform is the GOAT.
+        Terraform is the GOAT
       </p>
       <nav className="grid grid-cols-2 gap-[5px] lg:grid-cols-1">
         {["Overview", "Projects", "CV"].map((item) => (

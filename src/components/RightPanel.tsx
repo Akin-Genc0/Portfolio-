@@ -72,10 +72,9 @@ export function RightPanel({
           </p>
           {events.slice(0, 5).map((event) => (
             <div
-              className="flex gap-[11px] border-b border-[var(--line)] py-[14px]"
+              className="border-b border-[var(--line)] py-[14px]"
               key={event.id}
             >
-              <span className="mt-[5px] h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--highlight)]" />
               <p className="m-0 text-xs leading-[1.5] text-[#d5d5d0]">
                 {formatEvent(event)}
                 <small className="mt-[3px] block text-[10px] text-[var(--muted)]">
