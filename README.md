@@ -1,6 +1,6 @@
 # Akin Genc | Portfolio
 
-A responsive personal portfolio for Akin Genc, a Software Engineer. It presents professional experience, selected GitHub work, current technical interests, and a printable CV.
+A responsive personal portfolio. It presents professional experience, selected GitHub work, current technical interests, and a printable CV.
 
 ## Features
 
