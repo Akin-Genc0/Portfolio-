@@ -17,3 +17,5 @@ A responsive personal portfolio for Akin Genc, a Software Engineer. It presents 
 - TypeScript
 - Tailwind CSS 4
 - GitHub REST API
+
+ 

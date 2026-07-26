@@ -20,6 +20,7 @@ const skills = [
   "Tailwind CSS",
   "Terraform",
   "Docker",
+  "Node.js",
   "Microsoft Azure",
   "Google Cloud",
 ];
@@ -61,19 +62,14 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
             in 2027, and enjoy building scalable software, automating workflows,
             and learning new technologies.
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-[var(--muted)]">
             {skills.map((skill) => (
-              <span
-                className="rounded-[5px] border border-[#454545] bg-[#303030] px-[9px] py-[7px] text-[11px] text-[#d5d5d0]"
-                key={skill}
-              >
-                {skill}
-              </span>
+              <span key={skill}>{skill}</span>
             ))}
           </div>
         </div>
         <div
-          className="self-center rounded-[10px] border border-[#454545] bg-[var(--panel-deep)] p-6"
+          className="self-center rounded-[10px] border border-[#454545] bg-[var(--panel)] p-6"
           id="cv"
         >
           <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
@@ -128,7 +124,7 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {featured.map((repository) => (
               <article
-                className="min-h-0 rounded-[9px] border border-[#454545] bg-[var(--panel-deep)] p-[18px] hover:border-[#555] sm:min-h-[190px]"
+                className="min-h-0 rounded-[9px] border border-[#454545] bg-[var(--panel)] p-[18px] hover:border-[#555] sm:min-h-[190px]"
                 key={repository.name}
               >
                 <div className="flex flex-wrap justify-between gap-2 text-[11px] text-[var(--muted)]">
