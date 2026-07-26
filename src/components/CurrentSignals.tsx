@@ -28,35 +28,35 @@ const signals = [
 
 export function CurrentSignals() {
   return (
-    <section className="signals panel" aria-labelledby="signals-heading">
-      <div className="section-heading">
+    <section className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:signals] lg:p-[26px]" aria-labelledby="signals-heading">
+      <div className="mb-5 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <p className="eyebrow">Current signals</p>
-          <h2 id="signals-heading">What I&apos;m learning</h2>
+          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">Current signals</p>
+          <h2 className="m-0 text-xl tracking-[-.04em]" id="signals-heading">What I&apos;m learning</h2>
         </div>
-        <span className="signals-status">Updated regularly</span>
+        <span className="text-[11px] text-[var(--muted)]">Updated regularly</span>
       </div>
-      <div className="signals-grid">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {signals.map((signal, index) => (
           <a
             href={signal.href}
             key={signal.title}
             rel="noreferrer"
-            target="_blank"
+            target="_blank" className="min-h-[220px] overflow-hidden rounded-[9px] border border-[#454545] bg-[var(--panel-deep)] pb-[18px] hover:border-[#555]"
           >
             <Image
               alt=""
-              className="signal-image"
+              className="mb-[18px] block !h-[110px] !w-full bg-[#202020] p-6 object-contain"
               height={160}
               src={signal.image}
               unoptimized
               width={300}
             />
-            <span className="signal-number">0{index + 1}</span>
-            <p className="signal-label">{signal.label}</p>
-            <h3>{signal.title}</h3>
-            <p>{signal.detail}</p>
-            <span className="signal-link">Open resource -&gt;</span>
+            <span className="mx-[18px] block text-xs text-[#858585]">0{index + 1}</span>
+            <p className="mx-[18px] mt-7 mb-2 block text-[10px] uppercase tracking-[.08em] text-[var(--muted)]">{signal.label}</p>
+            <h3 className="mx-[18px] my-0 block text-base leading-[1.3]">{signal.title}</h3>
+            <p className="mx-[18px] block text-[11px] leading-[1.6] text-[var(--muted)]">{signal.detail}</p>
+            <span className="mx-[18px] block text-[11px] text-[var(--muted)] underline underline-offset-3">Open resource -&gt;</span>
           </a>
         ))}
       </div>

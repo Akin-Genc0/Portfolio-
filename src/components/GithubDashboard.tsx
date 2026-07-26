@@ -14,36 +14,14 @@ type Props = {
 };
 const skills = [
   "TypeScript",
+  "JavaScript",
+  "Java",
   "React",
-  "Next.js",
-  "Node.js",
   "Tailwind CSS",
-  "GitHub Actions",
-];
-const techStack = [
-  { label: "Languages", skills: ["TypeScript", "JavaScript", "Java"] },
-  {
-    label: "Frontend",
-    skills: ["React", "Next.js", "Tailwind CSS", "Kontent.ai"],
-  },
-  {
-    label: "Backend",
-    skills: ["Node.js", "Prisma ORM", "NextAuth.js", "PostgreSQL"],
-  },
-  {
-    label: "Cloud & infrastructure",
-    skills: [
-      "Terraform",
-      "Docker",
-      "Ansible",
-      "Microsoft Azure",
-      "Google Cloud",
-    ],
-  },
-  {
-    label: "Delivery & tools",
-    skills: ["Git", "GitHub Actions", "CI/CD", "Jira", "Linear", "Figma"],
-  },
+  "Terraform",
+  "Docker",
+  "Microsoft Azure",
+  "Google Cloud",
 ];
 
 export function GithubDashboard({ events, profile, repositories }: Props) {
@@ -51,18 +29,31 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
     ["Component-Library", "Console-robot_simulator"].includes(repository.name),
   );
   return (
-    <main className="dashboard">
-      <header className="command-bar">
-        <p>
-          <span>&gt;</span> Akin Genc / Portfolio
+    <main className="grid grid-cols-1 content-start gap-2 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-4 lg:[grid-template-areas:'bar_bar'_'hero_activity'_'projects_activity'_'signals_activity']">
+      <header className="flex min-h-20 items-center justify-between rounded-[14px] border border-[var(--line)] bg-[var(--panel)] px-[22px] py-[18px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:bar] lg:px-7">
+        <p className="m-0 text-[15px]">
+          <span className="font-black text-[var(--highlight)]">&gt;</span> Akin
+          Genc / Portfolio
         </p>
-        <a href="#projects">Browse projects -&gt;</a>
+        <a
+          className="hidden text-xs text-[var(--muted)] hover:text-[var(--text)] sm:block"
+          href="#projects"
+        >
+          Browse projects -&gt;
+        </a>
       </header>
-      <section className="hero panel" id="overview">
-        <div className="hero-copy">
-          <p className="eyebrow">Professional summary</p>
-          <h1>Hi, I&apos;m Akin.</h1>
-          <p className="intro">
+      <section
+        className="grid gap-[25px] rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:hero] lg:grid-cols-[1.1fr_.9fr] lg:gap-[38px] lg:p-[38px]"
+        id="overview"
+      >
+        <div>
+          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
+            Professional summary
+          </p>
+          <h1 className="m-0 max-w-[620px] text-[34px] leading-[1.15] tracking-[-.06em] lg:text-[clamp(30px,4vw,54px)]">
+            Hi, I&apos;m Akin.
+          </h1>
+          <p className="my-[23px] max-w-[600px] text-sm leading-[1.75] text-[var(--muted)]">
             I&apos;m a Software Engineer at Elanco, working across cloud
             infrastructure, DevOps, and full-stack development with Terraform,
             Azure, GCP, TypeScript, and Next.js. I&apos;m in my final year
@@ -70,15 +61,25 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
             in 2027, and enjoy building scalable software, automating workflows,
             and learning new technologies.
           </p>
-          <div className="skill-list">
+          <div className="flex flex-wrap gap-2">
             {skills.map((skill) => (
-              <span key={skill}>{skill}</span>
+              <span
+                className="rounded-[5px] border border-[#454545] bg-[#303030] px-[9px] py-[7px] text-[11px] text-[#d5d5d0]"
+                key={skill}
+              >
+                {skill}
+              </span>
             ))}
           </div>
         </div>
-        <div className="cv-summary-card" id="cv">
-          <p className="eyebrow">At a glance</p>
-          <dl>
+        <div
+          className="self-center rounded-[10px] border border-[#454545] bg-[var(--panel-deep)] p-6"
+          id="cv"
+        >
+          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
+            At a glance
+          </p>
+          <dl className="m-0 [&_div:last-child]:border-0 [&_div]:border-b [&_div]:border-[#3a3a3a] [&_div]:py-[11px] [&_dt]:mb-[5px] [&_dt]:text-[10px] [&_dt]:uppercase [&_dt]:text-[var(--muted)] [&_dd]:m-0 [&_dd]:text-xs [&_dd]:leading-[1.5]">
             <div>
               <dt>Current role</dt>
               <dd>Software Engineer, Elanco</dd>
@@ -96,58 +97,71 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
               <dd>BSc Computer Science, University of Reading</dd>
             </div>
           </dl>
-          <p className="availability-note">
+          <p className="mb-0 mt-[18px] text-[11px] italic text-[var(--muted)]">
             Open to opportunities and collaboration.
           </p>
         </div>
       </section>
-      <section className="projects-section panel" id="projects">
-        <div className="section-heading">
+      <section
+        className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:projects] lg:p-[26px]"
+        id="projects"
+      >
+        <div className="mb-5 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
           <div>
-            <p className="eyebrow">Selected work</p>
-            <h2>Recent GitHub projects</h2>
+            <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
+              Selected work
+            </p>
+            <h2 className="m-0 text-xl tracking-[-.04em]">
+              Recent GitHub projects
+            </h2>
           </div>
           <a
             href={profile?.html_url ?? "https://github.com/Akin-Genc0"}
             rel="noreferrer"
             target="_blank"
+            className="text-xs text-[var(--muted)] hover:text-[var(--text)]"
           >
             View GitHub -&gt;
           </a>
         </div>
         {featured.length ? (
-          <div className="project-grid">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {featured.map((repository) => (
-              <article className="project-card" key={repository.name}>
-                <div className="project-topline">
-                  <span className="repo-mark">
+              <article
+                className="min-h-0 rounded-[9px] border border-[#454545] bg-[var(--panel-deep)] p-[18px] hover:border-[#555] sm:min-h-[190px]"
+                key={repository.name}
+              >
+                <div className="flex flex-wrap justify-between gap-2 text-[11px] text-[var(--muted)]">
+                  <span className="grid h-[26px] w-[26px] place-items-center rounded-md bg-[#3a3a3a] font-extrabold text-[#e2e2dd]">
                     {repository.language?.slice(0, 1) ?? "#"}
                   </span>
                   <span>{relativeDate(repository.updated_at)}</span>
                 </div>
-                <h3>
+                <h3 className="my-[18px] mb-[9px] text-sm capitalize">
                   <a
                     href={repository.html_url}
                     rel="noreferrer"
                     target="_blank"
+                    className="hover:text-white"
                   >
                     {repository.name.replaceAll("-", " ")}
                   </a>
                 </h3>
-                <p>
+                <p className="mb-4 min-h-[39px] text-[11px] leading-[1.55] text-[var(--muted)]">
                   {repository.description ??
                     "Explore the source code and project details on GitHub."}
                 </p>
-                <div className="project-meta">
+                <div className="flex flex-wrap justify-between gap-2 text-[11px] text-[var(--muted)] [&_span]:rounded-[5px] [&_span]:border [&_span]:border-[#454545] [&_span]:bg-[#303030] [&_span]:px-[6px] [&_span]:py-1 [&_span]:text-[10px] [&_span]:text-[#d5d5d0]">
                   <span>{repository.language ?? "Code"}</span>
                   <span>{repository.stargazers_count} stars</span>
                 </div>
                 {repository.name === "Component-Library" && (
-                  <div className="project-links">
+                  <div className="mt-4 flex gap-3">
                     <a
                       href="https://looply-y.com"
                       rel="noreferrer"
                       target="_blank"
+                      className="text-[11px] text-[var(--muted)] underline underline-offset-3 hover:text-white"
                     >
                       Live site -&gt;
                     </a>
@@ -155,6 +169,7 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
                       href="https://www.npmjs.com/package/looply-comp-lib"
                       rel="noreferrer"
                       target="_blank"
+                      className="text-[11px] text-[var(--muted)] underline underline-offset-3 hover:text-white"
                     >
                       npm package -&gt;
                     </a>
@@ -169,21 +184,6 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
             shortly.
           </p>
         )}
-      </section>
-      <section className="tech-section panel">
-        <p className="eyebrow">Tech stack</p>
-        <div className="tech-groups">
-          {techStack.map((group) => (
-            <div className="tech-group" key={group.label}>
-              <p>{group.label}</p>
-              <div className="tech-list">
-                {group.skills.map((skill) => (
-                  <span key={skill}>{skill}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
       <CurrentSignals />
       <RightPanel events={events} profile={profile} />
