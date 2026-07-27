@@ -7,7 +7,7 @@ const signals = [
     detail:
       "Reusable infrastructure modules and safer multi-environment delivery.",
     href: "https://developer.hashicorp.com/terraform/docs",
-    image: "https://cdn.simpleicons.org/terraform/7B42BC",
+    image: "https://cdn.simpleicons.org/terraform/D5D5D0",
   },
   {
     label: "Learning",
@@ -15,14 +15,27 @@ const signals = [
     detail:
       "Cloud architecture, observability, and scalable application delivery.",
     href: "https://cloud.google.com/docs",
-    image: "https://cdn.simpleicons.org/googlecloud/4285F4",
+    image: "https://cdn.simpleicons.org/googlecloud/D5D5D0",
   },
   {
     label: "Building",
     title: "CI/CD that removes friction",
     detail: "Delivery pipelines that make releases predictable and fast.",
     href: "https://docs.github.com/en/actions",
-    image: "https://cdn.simpleicons.org/githubactions/2088FF",
+    image: "https://cdn.simpleicons.org/githubactions/D5D5D0",
+  },
+];
+
+const impacts = [
+  {
+    title: "Release automation",
+    detail:
+      "Reduced iOS release time from around four hours to 5-10 minutes with GitHub Actions and Ruby.",
+  },
+  {
+    title: "Open-source component library",
+    detail:
+      "Built and published Looply, a reusable React component library with TypeScript and Tailwind CSS, reaching 100+ npm installs.",
   },
 ];
 
@@ -80,6 +93,30 @@ export function CurrentSignals() {
           </a>
         ))}
       </div>
+      <section
+        className="mt-8 border-t border-[var(--line)] pt-7"
+        aria-labelledby="impact-heading"
+      >
+        <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
+          Recent impact
+        </p>
+        <h2 className="mb-5 mt-0 text-xl tracking-[-.04em]" id="impact-heading">
+          What I&apos;ve delivered
+        </h2>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {impacts.map((impact) => (
+            <article
+              className="rounded-[9px] border border-[#454545] bg-[var(--panel)] p-[18px]"
+              key={impact.title}
+            >
+              <h3 className="m-0 text-base">{impact.title}</h3>
+              <p className="mb-0 mt-3 text-[12px] leading-[1.7] text-[var(--muted)]">
+                {impact.detail}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
     </section>
   );
 }
