@@ -39,6 +39,14 @@ const weatherConditions: Record<number, string> = {
   95: "Thunderstorm",
 };
 
+const commitMessages = [
+  "feat: automate mobile release approvals",
+  "fix: tighten cloud cost alert thresholds",
+  "docs: clarify Looply installation",
+  "refactor: simplify deployment workflow",
+  "chore: refresh portfolio signals",
+];
+
 function WeatherIcon() {
   return (
     <svg
@@ -59,6 +67,8 @@ function WeatherIcon() {
 }
 
 export function RightPanel({ events }: { events: GithubEvent[] }) {
+  const [commitMessage, setCommitMessage] = useState(commitMessages[0]);
+  const [looplyDownloads, setLooplyDownloads] = useState<number | null>(null);
   const [now, setNow] = useState<Date | null>(null);
   const [news, setNews] = useState<NewsItem[]>([]);
   const [weather, setWeather] = useState<Weather | null>(null);
@@ -67,6 +77,29 @@ export function RightPanel({ events }: { events: GithubEvent[] }) {
     setNow(new Date());
     const timer = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function getLooplyDownloads() {
+      try {
+        const response = await fetch(
+          "https://api.npmjs.org/downloads/point/last-week/looply-comp-lib",
+          { signal: controller.signal },
+        );
+        if (!response.ok) return;
+
+        const data: { downloads?: number } = await response.json();
+        if (typeof data.downloads === "number")
+          setLooplyDownloads(data.downloads);
+      } catch (error) {
+        if ((error as DOMException).name !== "AbortError") return;
+      }
+    }
+
+    getLooplyDownloads();
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {
@@ -113,7 +146,17 @@ export function RightPanel({ events }: { events: GithubEvent[] }) {
           ),
         );
 
-        setNews((relevantItems.length ? relevantItems : items).slice(0, 3));
+        const selectedItems = [
+          ...relevantItems,
+          ...items.filter(
+            (item) =>
+              !relevantItems.some(
+                (relevantItem) => relevantItem.id === item.id,
+              ),
+          ),
+        ];
+
+        setNews(selectedItems.slice(0, 3));
       } catch (error) {
         if ((error as DOMException).name !== "AbortError") return;
       }
@@ -315,6 +358,78 @@ export function RightPanel({ events }: { events: GithubEvent[] }) {
               Loading the latest stories...
             </p>
           )}
+        </section>
+        <section className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)]">
+          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
+            Looply
+          </p>
+          <strong className="text-[32px] tracking-[-.07em] text-[var(--text)]">
+            {looplyDownloads === null
+              ? "-"
+              : new Intl.NumberFormat("en-GB").format(looplyDownloads)}
+          </strong>
+          <p className="mb-0 mt-1 text-[11px] text-[var(--muted)]">
+            npm downloads in the last 7 days
+          </p>
+          <a
+            className="mt-4 inline-block text-[11px] text-[var(--muted)] underline underline-offset-3 hover:text-[var(--text)]"
+            href="https://www.npmjs.com/package/looply-comp-lib"
+            rel="noreferrer"
+            target="_blank"
+          >
+            View npm package -&gt;
+          </a>
+        </section>
+        <section className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)]">
+          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
+            Build queue
+          </p>
+          <ol className="m-0 grid list-none gap-3 text-xs text-[var(--muted)]">
+            <li>01 Improve Looply documentation</li>
+            <li>02 Expand Terraform cost alerts</li>
+            <li>03 Learn GCP observability</li>
+          </ol>
+        </section>
+        <section className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)]">
+          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
+            Currently reading
+          </p>
+          <a
+            className="block text-[13px] leading-[1.5] text-[var(--text)] hover:text-white"
+            href="https://books.google.com/books?q=Expedition+Wayne+Barlowe"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Expedition
+          </a>
+          <p className="mb-0 mt-2 text-[11px] leading-[1.6] text-[var(--muted)]">
+            Wayne Barlowe&apos;s illustrated science-fiction expedition to
+            Darwin IV.
+          </p>
+        </section>
+        <section className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)]">
+          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
+            Commit message generator
+          </p>
+          <code className="block rounded-md border border-[#454545] bg-[var(--bg)] p-3 text-[11px] leading-[1.6] text-[var(--highlight)]">
+            {commitMessage}
+          </code>
+          <button
+            className="mt-4 text-[11px] text-[var(--muted)] underline underline-offset-3 hover:text-[var(--text)]"
+            onClick={() => {
+              setCommitMessage((current) => {
+                const alternatives = commitMessages.filter(
+                  (message) => message !== current,
+                );
+                return alternatives[
+                  Math.floor(Math.random() * alternatives.length)
+                ];
+              });
+            }}
+            type="button"
+          >
+            Generate message -&gt;
+          </button>
         </section>
       </div>
     </details>

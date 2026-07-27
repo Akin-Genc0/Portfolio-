@@ -25,7 +25,10 @@ export type GithubEvent = {
 };
 
 const username = "Akin-Genc0";
-const apiOptions = { next: { revalidate: 3600 } };
+const apiOptions = {
+  headers: { Accept: "application/vnd.github+json" },
+  next: { revalidate: 3600 },
+};
 
 async function getJson<T>(path: string): Promise<T | null> {
   try {
@@ -43,7 +46,11 @@ export async function getGithubPortfolio() {
     getJson<GithubEvent[]>(`/users/${username}/events/public?per_page=8`),
   ]);
 
-  return { profile, repositories: (repositories ?? []).filter((repository) => !repository.fork), events: events ?? [] };
+  return {
+    profile,
+    repositories: (repositories ?? []).filter((repository) => !repository.fork),
+    events: events ?? [],
+  };
 }
 
 export function formatEvent(event: GithubEvent) {
