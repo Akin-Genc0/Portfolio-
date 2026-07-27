@@ -7,7 +7,6 @@ import { formatEvent, relativeDate } from "@/lib/github";
 type Weather = {
   apparentTemperature: number;
   condition: string;
-  icon: string;
   temperature: number;
   windSpeed: number;
 };
@@ -40,27 +39,24 @@ const weatherConditions: Record<number, string> = {
   95: "Thunderstorm",
 };
 
-const weatherIcons: Record<number, string> = {
-  0: "☀",
-  1: "🌤",
-  2: "⛅",
-  3: "☁",
-  45: "🌫",
-  48: "🌫",
-  51: "🌦",
-  53: "🌦",
-  55: "🌧",
-  61: "🌦",
-  63: "🌧",
-  65: "🌧",
-  71: "🌨",
-  73: "🌨",
-  75: "❄",
-  80: "🌦",
-  81: "🌧",
-  82: "🌧",
-  95: "⛈",
-};
+function WeatherIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-11 w-11 shrink-0 text-[var(--highlight)]"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.75"
+      viewBox="0 0 24 24"
+    >
+      <circle cx="8" cy="8" r="3" />
+      <path d="M8 1.5v1.25M8 13.25v1.25M1.5 8h1.25M13.25 8h1.25M3.4 3.4l.9.9M11.7 11.7l.9.9" />
+      <path d="M8.5 19h9a3.5 3.5 0 0 0 .3-7 4.75 4.75 0 0 0-8.96 1.28A2.9 2.9 0 0 0 8.5 19Z" />
+    </svg>
+  );
+}
 
 export function RightPanel({ events }: { events: GithubEvent[] }) {
   const [now, setNow] = useState<Date | null>(null);
@@ -153,7 +149,6 @@ export function RightPanel({ events }: { events: GithubEvent[] }) {
           condition:
             weatherConditions[data.current.weather_code] ??
             "Current conditions",
-          icon: weatherIcons[data.current.weather_code] ?? "☁",
           temperature: Math.round(data.current.temperature_2m),
           windSpeed: Math.round(data.current.wind_speed_10m),
         });
@@ -241,9 +236,7 @@ export function RightPanel({ events }: { events: GithubEvent[] }) {
             <div className="flex items-end justify-between gap-4">
               <div>
                 <div className="flex items-center gap-3">
-                  <span aria-hidden="true" className="text-3xl leading-none">
-                    {weather.icon}
-                  </span>
+                  <WeatherIcon />
                   <strong className="text-[42px] tracking-[-.08em] text-[var(--text)]">
                     {weather.temperature}°
                   </strong>
