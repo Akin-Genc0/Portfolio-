@@ -392,6 +392,23 @@ export function RightPanel({ events }: { events: GithubEvent[] }) {
         </section>
         <section className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)]">
           <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
+            Currently reading
+          </p>
+          <a
+            className="block text-[13px] leading-[1.5] text-[var(--text)] hover:text-white"
+            href="https://books.google.com/books?q=Expedition+Wayne+Barlowe"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Expedition
+          </a>
+          <p className="mb-0 mt-2 text-[11px] leading-[1.6] text-[var(--muted)]">
+            Wayne Barlowe&apos;s illustrated science-fiction expedition to
+            Darwin IV.
+          </p>
+        </section>
+        <section className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)]">
+          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
             Commit message generator
           </p>
           <code className="block rounded-md border border-[#454545] bg-[var(--bg)] p-3 text-[11px] leading-[1.6] text-[var(--highlight)]">
