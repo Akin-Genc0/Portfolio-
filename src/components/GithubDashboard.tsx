@@ -182,7 +182,7 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
         )}
       </section>
       <CurrentSignals />
-      <RightPanel events={events} profile={profile} />
+      <RightPanel events={events} />
     </main>
   );
 }
