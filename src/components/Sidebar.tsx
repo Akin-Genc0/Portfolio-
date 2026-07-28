@@ -12,7 +12,7 @@ export function Sidebar({ profile }: { profile: GithubProfile | null }) {
         </p>
       </div>
       <nav className="grid grid-cols-2 gap-[5px] lg:grid-cols-1">
-        {["Overview", "Projects", "CV"].map((item) => (
+        {["Overview", "CV"].map((item) => (
           <a
             className="rounded-lg px-2 py-[13px] text-sm text-[#d4d4d0] first:bg-[#373737] first:text-[#f0f0eb] hover:bg-[#373737] hover:text-[#f0f0eb]"
             href={item === "CV" ? "/cv" : `#${item.toLowerCase()}`}
