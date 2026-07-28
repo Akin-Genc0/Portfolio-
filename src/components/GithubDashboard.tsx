@@ -129,9 +129,6 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
                 key={repository.name}
               >
                 <div className="flex flex-wrap justify-between gap-2 text-[11px] text-[var(--muted)]">
-                  <span className="grid h-[26px] w-[26px] place-items-center rounded-md bg-[#3a3a3a] font-extrabold text-[#e2e2dd]">
-                    {repository.language?.slice(0, 1) ?? "#"}
-                  </span>
                   <span>{relativeDate(repository.updated_at)}</span>
                 </div>
                 <h3 className="my-[18px] mb-[9px] text-sm capitalize">
@@ -148,14 +145,14 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
                   {repository.description ??
                     "Explore the source code and project details on GitHub."}
                 </p>
-                <div className="flex flex-wrap justify-between gap-2 text-[11px] text-[var(--muted)] [&_span]:rounded-[5px] [&_span]:border [&_span]:border-[#454545] [&_span]:bg-[#303030] [&_span]:px-[6px] [&_span]:py-1 [&_span]:text-[10px] [&_span]:text-[#d5d5d0]">
+                <div className="flex flex-wrap justify-between gap-2 text-[11px] text-[var(--muted)]">
                   <span>{repository.language ?? "Code"}</span>
                   <span>{repository.stargazers_count} stars</span>
                 </div>
                 {repository.name === "Component-Library" && (
                   <div className="mt-4 flex gap-3">
                     <a
-                      href="https://looply-y.com"
+                      href="https://loopl-y.com/"
                       rel="noreferrer"
                       target="_blank"
                       className="text-[11px] text-[var(--muted)] underline underline-offset-3 hover:text-white"
