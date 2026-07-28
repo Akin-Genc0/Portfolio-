@@ -57,7 +57,7 @@ export function CaseStudies() {
             {caseStudy.href && (
               <a
                 className="mt-4 inline-block text-[11px] text-[var(--muted)] underline underline-offset-3 hover:text-[var(--text)]"
-                href={caseStudy.href}
+                href="https://loopl-y.com"
                 rel="noreferrer"
                 target="_blank"
               >

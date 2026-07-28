@@ -32,7 +32,7 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
   );
   return (
     <main className="grid grid-cols-1 content-start gap-2 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-4 lg:[grid-template-areas:'bar_bar'_'hero_activity'_'projects_activity'_'signals_activity'_'highlights_activity']">
-      <header className="flex min-h-20 items-center justify-between rounded-[14px] border border-[var(--line)] bg-[var(--panel)] px-[22px] py-[18px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:bar] lg:px-7">
+      <header className="flex min-h-12 items-center justify-between rounded-[14px] border border-[var(--line)] bg-[var(--panel)] px-[22px] py-2 shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:bar] lg:px-7">
         <p className="m-0 text-[15px]">
           <span className="font-black text-[var(--highlight)]">&gt;</span> Akin
           Genc / Portfolio
