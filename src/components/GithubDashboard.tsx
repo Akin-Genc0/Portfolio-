@@ -28,7 +28,9 @@ const skills = [
 
 export function GithubDashboard({ events, profile, repositories }: Props) {
   const featured = repositories.filter((repository) =>
-    ["Component-Library", "Console-robot_simulator"].includes(repository.name),
+    ["Component-Library", "tfpretty"].includes(
+      repository.name,
+    ),
   );
   return (
     <main className="grid grid-cols-1 content-start gap-2 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-4 lg:[grid-template-areas:'bar_bar'_'hero_activity'_'projects_activity'_'signals_activity'_'highlights_activity']">
