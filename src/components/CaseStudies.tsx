@@ -29,41 +29,39 @@ const caseStudies = [
 export function CaseStudies() {
   return (
     <section
-      className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:highlights] lg:p-[26px]"
+      className="order-5 border-b border-[var(--line)] px-5 py-8 sm:px-9 sm:py-10"
       aria-labelledby="case-studies-heading"
     >
-      <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
-        Selected case studies
+      <p className="mb-3 mt-0 font-mono text-[11px] text-[var(--muted)]">
+        case-studies.md
       </p>
       <h2
-        className="mb-6 mt-0 text-xl tracking-[-.04em]"
+        className="mb-6 mt-0 text-2xl font-semibold tracking-[-.05em]"
         id="case-studies-heading"
       >
         Work with measurable outcomes
       </h2>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {caseStudies.map((caseStudy) => (
-          <article
-            className="rounded-[9px] border border-[#454545] bg-[var(--panel)] p-[18px]"
-            key={caseStudy.title}
-          >
-            <p className="mb-3 mt-0 text-[10px] uppercase tracking-[.08em] text-[var(--muted)]">
-              {caseStudy.label}
-            </p>
-            <h3 className="m-0 text-base">{caseStudy.title}</h3>
-            <p className="mb-0 mt-3 text-[12px] leading-[1.7] text-[var(--muted)]">
-              {caseStudy.detail}
-            </p>
+      <div className="divide-y divide-[var(--line)] border-y border-[var(--line)]">
+        {caseStudies.map((caseStudy, index) => (
+          <article className="grid gap-4 py-6 sm:grid-cols-[50px_minmax(0,1fr)_minmax(0,1.1fr)] sm:gap-6" key={caseStudy.title}>
+            <span className="font-mono text-[11px] text-[var(--muted)]">{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <p className="mb-3 mt-0 font-mono text-[10px] text-[var(--muted)]">{caseStudy.label}</p>
+              <h3 className="m-0 text-lg font-semibold tracking-[-.04em]">{caseStudy.title}</h3>
+            </div>
+            <div>
+              <p className="m-0 text-[13px] leading-[1.7] text-[var(--muted)]">{caseStudy.detail}</p>
             {caseStudy.href && (
               <a
-                className="mt-4 inline-block text-[11px] text-[var(--muted)] underline underline-offset-3 hover:text-[var(--text)]"
-                href="https://loopl-y.com"
+                className="mt-4 inline-block font-mono text-[10px] text-[var(--muted)] underline underline-offset-3 hover:text-[var(--text)]"
+                href={caseStudy.href}
                 rel="noreferrer"
                 target="_blank"
               >
-                Explore Looply -&gt;
+                explore Looply
               </a>
             )}
+            </div>
           </article>
         ))}
       </div>

@@ -1,18 +1,20 @@
+import Image from "next/image";
+import { CaseStudies } from "@/components/CaseStudies";
+import { CurrentSignals } from "@/components/CurrentSignals";
+import { RightPanel } from "@/components/RightPanel";
 import type {
   GithubEvent,
   GithubProfile,
   GithubRepository,
 } from "@/lib/github";
 import { relativeDate } from "@/lib/github";
-import { RightPanel } from "@/components/RightPanel";
-import { CurrentSignals } from "@/components/CurrentSignals";
-import { CaseStudies } from "@/components/CaseStudies";
 
 type Props = {
   events: GithubEvent[];
   profile: GithubProfile | null;
   repositories: GithubRepository[];
 };
+
 const skills = [
   "TypeScript",
   "JavaScript",
@@ -26,161 +28,83 @@ const skills = [
   "Google Cloud",
 ];
 
+const projectImages: Record<string, string> = {
+  "Component-Library": "/looply.png",
+  tfpretty: "/tfpretty.png",
+};
+
 export function GithubDashboard({ events, profile, repositories }: Props) {
   const featured = repositories.filter((repository) =>
-    ["Component-Library", "tfpretty"].includes(
-      repository.name,
-    ),
+    ["Component-Library", "tfpretty"].includes(repository.name),
   );
+
   return (
-    <main className="grid grid-cols-1 content-start gap-2 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-4 lg:[grid-template-areas:'bar_bar'_'hero_activity'_'projects_activity'_'signals_activity'_'highlights_activity']">
-      <header className="flex min-h-12 items-center justify-between rounded-[14px] border border-[var(--line)] bg-[var(--panel)] px-[22px] py-2 shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:bar] lg:px-7">
-        <p className="m-0 text-[15px]">
-          <span className="font-black text-[var(--highlight)]">&gt;</span> Akin
-          Genc / Portfolio
-        </p>
-        <a
-          className="hidden text-xs text-[var(--muted)] hover:text-[var(--text)] sm:block"
-          href="#projects"
-        >
-          Browse projects -&gt;
+    <main className="paper-note mx-auto flex w-full max-w-[1080px] flex-col overflow-hidden border-x border-[var(--line)]">
+      <header className="order-1 flex items-center justify-between border-b border-[var(--line)] px-6 py-3 sm:px-9">
+        <p className="m-0 font-mono text-[10px] text-[var(--muted)]">akin-genc / README.md</p>
+        <a className="hidden font-mono text-[10px] text-[var(--muted)] hover:text-[var(--text)] sm:block" href="#projects">
+          jump to projects
         </a>
       </header>
-      <section
-        className="grid gap-[25px] rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:hero] lg:grid-cols-[1.1fr_.9fr] lg:gap-[38px] lg:p-[38px]"
-        id="overview"
-      >
-        <div>
-          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
-            Professional summary
-          </p>
-          <h1 className="m-0 max-w-[620px] text-[34px] leading-[1.15] tracking-[-.06em] lg:text-[clamp(30px,4vw,54px)]">
-            Hi, I&apos;m Akin.
-          </h1>
-          <p className="my-[23px] max-w-[600px] text-sm leading-[1.75] text-[var(--muted)]">
-            I&apos;m a Software Engineer at Elanco, working across cloud
-            infrastructure, DevOps, and full-stack development with Terraform,
-            Azure, GCP, TypeScript, and Next.js. I&apos;m in my final year
-            studying Computer Science at the University of Reading, graduating
-            in 2027, and enjoy building scalable software, automating workflows,
-            and learning new technologies.
-          </p>
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-[var(--muted)]">
-            {skills.map((skill) => (
-              <span key={skill}>{skill}</span>
-            ))}
+
+      <section className="order-2 border-b border-[var(--line)] px-5 py-8 sm:px-9 sm:py-10" id="overview">
+        <p className="mb-3 mt-0 font-mono text-[11px] text-[var(--muted)]">## About</p>
+        <h1 className="m-0 max-w-[680px] text-[clamp(2rem,3vw,2.8rem)] font-semibold tracking-[-.06em]">Akin Genc</h1>
+        <p className="my-6 max-w-[610px] text-[15px] leading-[1.75] text-[var(--muted)]">
+          I&apos;m a Software Engineer at Elanco, working across cloud infrastructure, DevOps, and full-stack development with Terraform, Azure, GCP, TypeScript, and Next.js. I&apos;m in my final year studying Computer Science at the University of Reading, graduating in 2027, and enjoy building scalable software, automating workflows, and learning new technologies.
+        </p>
+        <div className="border-t border-[var(--line)] pt-4">
+          <p className="mb-2 mt-0 font-mono text-[10px] text-[var(--muted)]">toolkit</p>
+          <div className="flex flex-wrap gap-x-2 font-mono text-[11px] leading-6 text-[var(--muted)]">
+            {skills.map((skill) => <span key={skill}>{skill}{skill !== skills.at(-1) ? " /" : ""}</span>)}
           </div>
-        </div>
-        <div
-          className="self-center rounded-[10px] border border-[#454545] bg-[var(--panel)] p-6"
-          id="cv"
-        >
-          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
-            At a glance
-          </p>
-          <dl className="m-0 [&_div:last-child]:border-0 [&_div]:border-b [&_div]:border-[#3a3a3a] [&_div]:py-[11px] [&_dt]:mb-[5px] [&_dt]:text-[10px] [&_dt]:uppercase [&_dt]:text-[var(--muted)] [&_dd]:m-0 [&_dd]:text-xs [&_dd]:leading-[1.5]">
-            <div>
-              <dt>Current role</dt>
-              <dd>Software Engineer, Elanco</dd>
-            </div>
-            <div>
-              <dt>Key impact</dt>
-              <dd>iOS releases reduced from 4 hours to 5-10 minutes</dd>
-            </div>
-            <div>
-              <dt>Focus</dt>
-              <dd>Cloud infrastructure, CI/CD, and web applications</dd>
-            </div>
-            <div>
-              <dt>Education</dt>
-              <dd>BSc Computer Science, University of Reading</dd>
-            </div>
-          </dl>
-          <p className="mb-0 mt-[18px] text-[11px] italic text-[var(--muted)]">
-            Open to opportunities and collaboration.
-          </p>
         </div>
       </section>
-      <section
-        className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:projects] lg:p-[26px]"
-        id="projects"
-      >
+
+      <section className="order-3 border-b border-[var(--line)] px-5 py-8 sm:px-9 sm:py-10" id="projects">
         <div className="mb-5 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
           <div>
-            <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
-              Selected work
-            </p>
-            <h2 className="m-0 text-xl tracking-[-.04em]">
-              Recent GitHub projects
-            </h2>
+            <p className="mb-2 mt-0 font-mono text-[11px] text-[var(--muted)]">## Projects</p>
+            <h2 className="m-0 text-2xl font-semibold tracking-[-.05em]">Things I&apos;ve built</h2>
           </div>
-          <a
-            href={profile?.html_url ?? "https://github.com/Akin-Genc0"}
-            rel="noreferrer"
-            target="_blank"
-            className="text-xs text-[var(--muted)] hover:text-[var(--text)]"
-          >
-            View GitHub -&gt;
+          <a className="font-mono text-[10px] text-[var(--muted)] hover:text-[var(--text)]" href={profile?.html_url ?? "https://github.com/Akin-Genc0"} rel="noreferrer" target="_blank">
+            view GitHub
           </a>
         </div>
         {featured.length ? (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="grid gap-5">
             {featured.map((repository) => (
-              <article
-                className="min-h-0 rounded-[9px] border border-[#454545] bg-[var(--panel)] p-[18px] hover:border-[#555] sm:min-h-[190px]"
-                key={repository.name}
-              >
-                <div className="flex flex-wrap justify-between gap-2 text-[11px] text-[var(--muted)]">
-                  <span>{relativeDate(repository.updated_at)}</span>
-                </div>
-                <h3 className="my-[18px] mb-[9px] text-sm capitalize">
-                  <a
-                    href={repository.html_url}
-                    rel="noreferrer"
-                    target="_blank"
-                    className="hover:text-white"
-                  >
-                    {repository.name.replaceAll("-", " ")}
-                  </a>
-                </h3>
-                <p className="mb-4 min-h-[39px] text-[11px] leading-[1.55] text-[var(--muted)]">
-                  {repository.description ??
-                    "Explore the source code and project details on GitHub."}
-                </p>
-                <div className="flex flex-wrap justify-between gap-2 text-[11px] text-[var(--muted)]">
-                  <span>{repository.language ?? "Code"}</span>
-                  <span>{repository.stargazers_count} stars</span>
-                </div>
-                {repository.name === "Component-Library" && (
-                  <div className="mt-4 flex gap-3">
-                    <a
-                      href="https://loopl-y.com/"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-[11px] text-[var(--muted)] underline underline-offset-3 hover:text-white"
-                    >
-                      Live site -&gt;
-                    </a>
-                    <a
-                      href="https://www.npmjs.com/package/looply-comp-lib"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-[11px] text-[var(--muted)] underline underline-offset-3 hover:text-white"
-                    >
-                      npm package -&gt;
-                    </a>
+              <article className="overflow-hidden rounded-xl border border-[var(--line)] bg-[#fffefa] transition-shadow hover:shadow-[0_8px_18px_rgb(0_0_0_/_8%)]" key={repository.name}>
+                <a className="group grid h-full sm:grid-cols-[minmax(280px,.95fr)_1fr]" href={repository.html_url} rel="noreferrer" target="_blank">
+                  <div className="relative h-52 overflow-hidden border-b border-[var(--line)] bg-[var(--panel-deep)] sm:h-full sm:min-h-[245px] sm:border-b-0 sm:border-r">
+                    <Image
+                      alt={`${repository.name.replaceAll("-", " ")} preview`}
+                      className="object-cover"
+                      fill
+                      sizes="(min-width: 640px) 45vw, 100vw"
+                      src={projectImages[repository.name]}
+                    />
                   </div>
-                )}
+                  <div className="flex min-h-[245px] flex-col p-6">
+                    <p className="m-0 font-mono text-[10px] text-[var(--muted)]">{repository.language ?? "Code"}</p>
+                    <h3 className="mb-3 mt-3 text-2xl font-semibold tracking-[-.06em]">{repository.name.replaceAll("-", " ")}</h3>
+                    <p className="m-0 text-[13px] leading-[1.7] text-[var(--muted)]">
+                      {repository.description ?? "Explore the source code and project details on GitHub."}
+                    </p>
+                    <div className="mt-auto flex items-center justify-between border-t border-[var(--line)] pt-4 font-mono text-[10px] text-[var(--muted)]">
+                      <span>{relativeDate(repository.updated_at)}</span>
+                      <span>view repository -&gt;</span>
+                    </div>
+                  </div>
+                </a>
               </article>
             ))}
           </div>
         ) : (
-          <p className="empty-state">
-            GitHub projects are temporarily unavailable. Please check back
-            shortly.
-          </p>
+          <p className="empty-state">GitHub projects are temporarily unavailable. Please check back shortly.</p>
         )}
       </section>
+
       <CurrentSignals />
       <CaseStudies />
       <RightPanel events={events} />

@@ -6,7 +6,7 @@ export default async function Home() {
   const { profile, repositories, events } = await getGithubPortfolio();
 
   return (
-    <div className="mx-auto grid min-h-screen max-w-[1880px] grid-cols-1 gap-2 p-2 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-4 lg:p-4">
+    <div className="mx-auto grid min-h-screen max-w-[1400px] grid-cols-1 p-4 sm:p-6 lg:grid-cols-[210px_minmax(0,1fr)] lg:gap-8 lg:p-8">
       <Sidebar profile={profile} />
       <GithubDashboard
         events={events}

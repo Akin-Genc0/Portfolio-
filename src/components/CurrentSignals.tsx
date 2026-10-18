@@ -1,119 +1,42 @@
 import Image from "next/image";
 
 const signals = [
-  {
-    label: "Learning",
-    title: "Terraform infrastructure",
-    detail:
-      "Reusable infrastructure modules and safer multi-environment delivery.",
-    href: "https://developer.hashicorp.com/terraform/docs",
-    image: "https://cdn.simpleicons.org/terraform/D5D5D0",
-  },
-  {
-    label: "Learning",
-    title: "Google Cloud Platform",
-    detail:
-      "Cloud architecture, observability, and scalable application delivery.",
-    href: "https://cloud.google.com/docs",
-    image: "https://cdn.simpleicons.org/googlecloud/D5D5D0",
-  },
-  {
-    label: "Building",
-    title: "CI/CD that removes friction",
-    detail: "Delivery pipelines that make releases predictable and fast.",
-    href: "https://docs.github.com/en/actions",
-    image: "https://cdn.simpleicons.org/githubactions/D5D5D0",
-  },
+  { label: "Learning", title: "Terraform infrastructure", detail: "Reusable infrastructure modules and safer multi-environment delivery.", href: "https://developer.hashicorp.com/terraform/docs", image: "https://cdn.simpleicons.org/terraform/22211E" },
+  { label: "Learning", title: "Google Cloud Platform", detail: "Cloud architecture, observability, and scalable application delivery.", href: "https://cloud.google.com/docs", image: "https://cdn.simpleicons.org/googlecloud/22211E" },
+  { label: "Building", title: "CI/CD that removes friction", detail: "Delivery pipelines that make releases predictable and fast.", href: "https://docs.github.com/en/actions", image: "https://cdn.simpleicons.org/githubactions/22211E" },
 ];
 
 const impacts = [
-  {
-    title: "Release automation",
-    detail:
-      "Reduced iOS release time from around four hours to 5-10 minutes with GitHub Actions and Ruby.",
-  },
-  {
-    title: "Open-source component library",
-    detail:
-      "Built and published Looply, a reusable React component library with TypeScript and Tailwind CSS, reaching 100+ npm installs.",
-  },
+  { title: "Release automation", detail: "Reduced iOS release time from around four hours to 5-10 minutes with GitHub Actions and Ruby." },
+  { title: "Open-source component library", detail: "Built and published Looply, a reusable React component library with TypeScript and Tailwind CSS, reaching 100+ npm installs." },
 ];
 
 export function CurrentSignals() {
   return (
-    <section
-      className="rounded-[14px] border border-[var(--line)] bg-[var(--panel)] p-[22px] shadow-[0_18px_45px_rgb(0_0_0_/_16%)] lg:[grid-area:signals] lg:p-[26px]"
-      aria-labelledby="signals-heading"
-    >
-      <div className="mb-5 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
-        <div>
-          <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
-            Current signals
-          </p>
-          <h2 className="m-0 text-xl tracking-[-.04em]" id="signals-heading">
-            What I&apos;m learning
-          </h2>
-        </div>
-        <span className="text-[11px] text-[var(--muted)]">
-          Updated regularly
-        </span>
-      </div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-        {signals.map((signal, index) => (
-          <a
-            href={signal.href}
-            key={signal.title}
-            rel="noreferrer"
-            target="_blank"
-            className="min-h-[220px] overflow-hidden rounded-[9px] border border-[#454545] bg-[var(--panel)] pb-[18px] hover:border-[#555]"
-          >
-            <Image
-              alt=""
-              className="mb-[18px] block !h-[110px] !w-full bg-[var(--panel)] p-6 object-contain"
-              height={160}
-              src={signal.image}
-              unoptimized
-              width={300}
-            />
-            <span className="mx-[18px] block text-xs text-[#858585]">
-              0{index + 1}
-            </span>
-            <p className="mx-[18px] mt-7 mb-2 block text-[10px] uppercase tracking-[.08em] text-[var(--muted)]">
-              {signal.label}
-            </p>
-            <h3 className="mx-[18px] my-0 block text-base leading-[1.3]">
-              {signal.title}
-            </h3>
-            <p className="mx-[18px] block text-[11px] leading-[1.6] text-[var(--muted)]">
-              {signal.detail}
-            </p>
-            <span className="mx-[18px] block text-[11px] text-[var(--muted)] underline underline-offset-3">
-              Open resource -&gt;
-            </span>
-          </a>
+    <section className="order-4 border-b border-[var(--line)] px-5 py-8 sm:px-9 sm:py-10" aria-labelledby="impact-heading">
+      <p className="mb-3 mt-0 font-mono text-[11px] text-[var(--muted)]">## Highlights</p>
+      <h2 className="mb-6 mt-0 text-2xl font-semibold tracking-[-.05em]" id="impact-heading">Things I&apos;ve improved</h2>
+      <div className="divide-y divide-[var(--line)] border-y border-[var(--line)]">
+        {impacts.map((impact, index) => (
+          <article className="grid gap-3 py-6 sm:grid-cols-[45px_minmax(0,1fr)_minmax(0,1.15fr)] sm:gap-6" key={impact.title}>
+            <span className="font-mono text-[10px] text-[var(--muted)]">{String(index + 1).padStart(2, "0")}</span>
+            <h3 className="m-0 text-lg font-semibold tracking-[-.04em]">{impact.title}</h3>
+            <p className="m-0 text-[13px] leading-[1.7] text-[var(--muted)]">{impact.detail}</p>
+          </article>
         ))}
       </div>
-      <section
-        className="mt-8 border-t border-[var(--line)] pt-7"
-        aria-labelledby="impact-heading"
-      >
-        <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[#bdbdb8]">
-          Recent impact
-        </p>
-        <h2 className="mb-5 mt-0 text-xl tracking-[-.04em]" id="impact-heading">
-          What I&apos;ve delivered
-        </h2>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {impacts.map((impact) => (
-            <article
-              className="rounded-[9px] border border-[#454545] bg-[var(--panel)] p-[18px]"
-              key={impact.title}
-            >
-              <h3 className="m-0 text-base">{impact.title}</h3>
-              <p className="mb-0 mt-3 text-[12px] leading-[1.7] text-[var(--muted)]">
-                {impact.detail}
-              </p>
-            </article>
+
+      <section className="mt-10" aria-labelledby="signals-heading">
+        <p className="mb-3 mt-0 font-mono text-[11px] text-[var(--muted)]">current.md</p>
+        <h2 className="mb-5 mt-0 text-xl font-semibold tracking-[-.05em]" id="signals-heading">What I&apos;m learning</h2>
+        <div className="divide-y divide-[var(--line)] border-y border-[var(--line)]">
+          {signals.map((signal, index) => (
+            <a className="grid gap-3 py-5 transition-colors hover:bg-[var(--highlight)] sm:grid-cols-[40px_34px_minmax(0,1fr)_minmax(0,1.1fr)] sm:items-center sm:gap-5" href={signal.href} key={signal.title} rel="noreferrer" target="_blank">
+              <span className="font-mono text-[10px] text-[var(--muted)]">{String(index + 1).padStart(2, "0")}</span>
+              <Image alt="" className="h-7 w-7 object-contain" height={28} src={signal.image} unoptimized width={28} />
+              <div><p className="mb-1 mt-0 font-mono text-[10px] text-[var(--muted)]">{signal.label}</p><h3 className="m-0 text-base font-semibold tracking-[-.04em]">{signal.title}</h3></div>
+              <p className="m-0 text-xs leading-[1.6] text-[var(--muted)]">{signal.detail}</p>
+            </a>
           ))}
         </div>
       </section>
