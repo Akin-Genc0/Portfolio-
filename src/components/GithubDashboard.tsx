@@ -39,7 +39,7 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
   );
 
   return (
-    <main className="paper-note mx-auto flex w-full max-w-[1080px] flex-col overflow-hidden border-x border-[var(--line)]">
+    <main className="paper-note mx-auto flex w-full max-w-none flex-col overflow-hidden border-x border-[var(--line)]">
       <header className="order-1 flex items-center justify-between border-b border-[var(--line)] px-6 py-3 sm:px-9">
         <p className="m-0 font-mono text-[10px] text-[var(--muted)]">akin-genc / README.md</p>
         <a className="hidden font-mono text-[10px] text-[var(--muted)] hover:text-[var(--text)] sm:block" href="#projects">
@@ -75,13 +75,13 @@ export function GithubDashboard({ events, profile, repositories }: Props) {
           <div className="grid gap-5">
             {featured.map((repository) => (
               <article className="overflow-hidden rounded-xl border border-[var(--line)] bg-[#fffefa] transition-shadow hover:shadow-[0_8px_18px_rgb(0_0_0_/_8%)]" key={repository.name}>
-                <a className="group grid h-full sm:grid-cols-[minmax(280px,.95fr)_1fr]" href={repository.html_url} rel="noreferrer" target="_blank">
-                  <div className="relative h-52 overflow-hidden border-b border-[var(--line)] bg-[var(--panel-deep)] sm:h-full sm:min-h-[245px] sm:border-b-0 sm:border-r">
+                <a className="group grid h-full md:grid-cols-[minmax(280px,.95fr)_1fr]" href={repository.html_url} rel="noreferrer" target="_blank">
+                  <div className="relative h-52 overflow-hidden border-b border-[var(--line)] bg-[var(--panel-deep)] md:h-full md:min-h-[245px] md:border-b-0 md:border-r">
                     <Image
                       alt={`${repository.name.replaceAll("-", " ")} preview`}
                       className="object-cover"
                       fill
-                      sizes="(min-width: 640px) 45vw, 100vw"
+                      sizes="(min-width: 768px) 45vw, 100vw"
                       src={projectImages[repository.name]}
                     />
                   </div>

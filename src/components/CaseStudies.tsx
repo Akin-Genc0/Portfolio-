@@ -43,7 +43,7 @@ export function CaseStudies() {
       </h2>
       <div className="divide-y divide-[var(--line)] border-y border-[var(--line)]">
         {caseStudies.map((caseStudy, index) => (
-          <article className="grid gap-4 py-6 sm:grid-cols-[50px_minmax(0,1fr)_minmax(0,1.1fr)] sm:gap-6" key={caseStudy.title}>
+          <article className="grid gap-4 py-6 md:grid-cols-[50px_minmax(0,1fr)_minmax(0,1.1fr)] md:gap-6" key={caseStudy.title}>
             <span className="font-mono text-[11px] text-[var(--muted)]">{String(index + 1).padStart(2, "0")}</span>
             <div>
               <p className="mb-3 mt-0 font-mono text-[10px] text-[var(--muted)]">{caseStudy.label}</p>

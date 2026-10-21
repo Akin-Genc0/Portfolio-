@@ -18,7 +18,7 @@ export function CurrentSignals() {
       <h2 className="mb-6 mt-0 text-2xl font-semibold tracking-[-.05em]" id="impact-heading">Things I&apos;ve improved</h2>
       <div className="divide-y divide-[var(--line)] border-y border-[var(--line)]">
         {impacts.map((impact, index) => (
-          <article className="grid gap-3 py-6 sm:grid-cols-[45px_minmax(0,1fr)_minmax(0,1.15fr)] sm:gap-6" key={impact.title}>
+          <article className="grid gap-3 py-6 md:grid-cols-[45px_minmax(0,1fr)_minmax(0,1.15fr)] md:gap-6" key={impact.title}>
             <span className="font-mono text-[10px] text-[var(--muted)]">{String(index + 1).padStart(2, "0")}</span>
             <h3 className="m-0 text-lg font-semibold tracking-[-.04em]">{impact.title}</h3>
             <p className="m-0 text-[13px] leading-[1.7] text-[var(--muted)]">{impact.detail}</p>
@@ -31,7 +31,7 @@ export function CurrentSignals() {
         <h2 className="mb-5 mt-0 text-xl font-semibold tracking-[-.05em]" id="signals-heading">What I&apos;m learning</h2>
         <div className="divide-y divide-[var(--line)] border-y border-[var(--line)]">
           {signals.map((signal, index) => (
-            <a className="grid gap-3 py-5 transition-colors hover:bg-[var(--highlight)] sm:grid-cols-[40px_34px_minmax(0,1fr)_minmax(0,1.1fr)] sm:items-center sm:gap-5" href={signal.href} key={signal.title} rel="noreferrer" target="_blank">
+            <a className="grid gap-3 py-5 transition-colors hover:bg-[var(--highlight)] md:grid-cols-[40px_34px_minmax(0,1fr)_minmax(0,1.1fr)] md:items-center md:gap-5" href={signal.href} key={signal.title} rel="noreferrer" target="_blank">
               <span className="font-mono text-[10px] text-[var(--muted)]">{String(index + 1).padStart(2, "0")}</span>
               <Image alt="" className="h-7 w-7 object-contain" height={28} src={signal.image} unoptimized width={28} />
               <div><p className="mb-1 mt-0 font-mono text-[10px] text-[var(--muted)]">{signal.label}</p><h3 className="m-0 text-base font-semibold tracking-[-.04em]">{signal.title}</h3></div>

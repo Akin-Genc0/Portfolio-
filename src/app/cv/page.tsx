@@ -11,7 +11,7 @@ const elancoAchievements = [
 
 export default function CvPage() {
   return (
-    <main className="mx-auto max-w-[850px] p-[72px_24px] [&_h2]:mb-[14px] [&_h2]:mt-9 [&_h2]:text-base [&_h3]:mb-2 [&_h3]:mt-0 [&_h3]:text-sm [&_h3_span]:text-[11px] [&_h3_span]:font-normal [&_h3_span]:text-[var(--muted)] [&_li]:text-[13px] [&_li]:leading-[1.7] [&_li]:text-[var(--muted)] [&_p]:text-[13px] [&_p]:leading-[1.7] [&_p]:text-[var(--muted)] [&_ul]:pl-5">
+    <main className="mx-auto max-w-[850px] px-5 py-12 sm:px-6 sm:py-[72px] [&_h2]:mb-[14px] [&_h2]:mt-9 [&_h2]:text-base [&_h3]:mb-2 [&_h3]:mt-0 [&_h3]:text-sm [&_h3_span]:text-[11px] [&_h3_span]:font-normal [&_h3_span]:text-[var(--muted)] [&_li]:text-[13px] [&_li]:leading-[1.7] [&_li]:text-[var(--muted)] [&_p]:text-[13px] [&_p]:leading-[1.7] [&_p]:text-[var(--muted)] [&_ul]:pl-5">
       <Link className="mb-9 inline-block text-xs text-[var(--muted)]" href="/">&lt;- Back to portfolio</Link>
       <header className="border-b border-[var(--line)] pb-[30px]">
         <p className="mb-3 mt-0 text-xs uppercase tracking-[.06em] text-[var(--muted)]">CV</p>
